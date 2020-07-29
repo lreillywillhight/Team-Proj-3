@@ -1,9 +1,11 @@
-// require('dotenv').config()
+require('dotenv').config()
 const express = require('express')
 const router = express.Router()
 const gravatar = require('gravatar')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+// const fetch = require('fetch')
+const axios = require('axios')
 const passport = require('passport')
 
 //load User model from file location
@@ -34,6 +36,15 @@ router.get('/test', (req, res) => {
     res.json({ msg: "Users endpoint working eyyyy okayyy" })
 })
 
+//test route to hit external eventful
+
+router.get('/test2', (req,res) => {
+    axios.get(`https://api.eventful.com/json/events/search?app_key=NFRS6FwLVhcNKTWD&keywords=concerts&location=Seattle&date=Future`)
+    .then(resJSON => {
+        console.log(resJSON)
+        res.send(resJSON)})
+    .catch(err => res.send(err))
+})
 // GET route to handle registration
 router.post('/register', (req, res) => {
     console.log('##############req.body is: ' + JSON.stringify(req.body) + ' ###############')
@@ -100,6 +111,7 @@ router.post('/login', (req, res) => {
                     if (isMatch) {
                         //create token payload
                         const payload = { id: user.id, name: user.name, email: user.email, zipcode: user.zipcode, createdAt: user.createdAt }
+                        // const payload = { id: user.id, name: user.name, email: user.email, zipcode: user.zipcode, createdAt: user.createdAt }
                         //sign the token
                         jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
                             res.json({ success: true, token: 'Bearer ' + token })

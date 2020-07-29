@@ -24,6 +24,7 @@ app.use(express.json())
 app.use('/v1/users', require('./routes/v1/users'))
 app.use('/v1/events', require('./routes/v1/events'))
 app.use('/v1/favorites', require('./routes/v1/favorites'))
+app.use('/v1/request', require('./routes/v1/request'))
 
 //setup out routes
 app.use('/v1/users', users)

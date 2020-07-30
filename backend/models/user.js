@@ -36,7 +36,7 @@ const UserSchema = new Schema({
   }
 );
 
-
+// 'User =' may cause a problem with heroku
 module.exports = User = mongoose.model('User', UserSchema);
 
 

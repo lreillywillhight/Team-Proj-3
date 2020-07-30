@@ -25,7 +25,6 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use('/v1/users', require('./routes/v1/users'))
 app.use('/v1/events', require('./routes/v1/events'))
 app.use('/v1/favorites', require('./routes/v1/favorites'))
-app.use('/v1/request', require('./routes/v1/request'))
 
 //setup out routes
 app.use('/v1/users', users)
@@ -34,6 +33,15 @@ app.use('/v1/users', users)
 require('./config/passport')(passport)
 
 
+const uri = process.env.MONGOD_URI
+console.log(process.env.MONGOD_URI)
+const MongoClient = require('mongodb').MongoClient;
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
 
 
 // app.use(function(req, res, next) {
@@ -49,7 +57,7 @@ require('./config/passport')(passport)
 // xhr.send(null);
 
 // routes
-mongoose.connect(mdb)
+mongoose.connect(uri)
     .then(() => { console.log('MongoDB Connected... (^///^)') })
     .catch(err => console.log(err))
 

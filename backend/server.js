@@ -20,6 +20,7 @@ app.use(cors({
 //body parser
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use(bodyParser.urlencoded({extended: true}))
 
 app.use('/v1/users', require('./routes/v1/users'))
 app.use('/v1/events', require('./routes/v1/events'))

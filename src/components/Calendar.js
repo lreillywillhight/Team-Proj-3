@@ -40,15 +40,6 @@ export default function Calendar() {
     //array of objects, iterated on in EventsDisplay.js
     const [events,setEvents] = useState(testEvents)
 
-    // let eventNames = {
-    //     events.map(event => {
-    //         <div>
-    //             <p>{event.name}</p>
-    //             <br/>
-    //         </div>
-    //     })
-    // }
-    
     return (
         <div className="Calendar">
             <div class="row my-5">
@@ -66,7 +57,6 @@ export default function Calendar() {
                     />
                 </div>
             </div>
-            {/* <p>{JSON.stringify(events)} </p> */}
         </div>
     )
 }

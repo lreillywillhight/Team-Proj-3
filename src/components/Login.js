@@ -43,8 +43,6 @@ export default function Login(props) {
                 // decode jwt token
                 const decoded = jwt_decode(token)
                 // set current user 
-                // console.log(decoded, 'Hi im decoded')
-                // console.log('props.nowCurrentUser', props.nowCurrentUser)
                 props.nowCurrentUser(decoded)
             })
             .catch(err => console.error(err))

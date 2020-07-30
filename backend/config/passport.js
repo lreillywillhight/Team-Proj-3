@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const db = require('../models')
 // const User = mongoose.model('users')
 
-
 const options = {}
 options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken()
 options.secretOrKey = process.env.JWT_SECRET
@@ -21,8 +20,5 @@ module.exports = passport => {
             return done(null, false)
         })
         .catch(err => console.log(err))
-            //if yes, return user
-            //if no, return false
-        //catch for errors
     }))
 }

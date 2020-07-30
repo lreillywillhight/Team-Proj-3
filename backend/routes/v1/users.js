@@ -111,8 +111,12 @@ router.post('/login', (req, res) => {
                     //if we are good to go sign out jwt
                     if (isMatch) {
                         //create token payload
+<<<<<<< HEAD
                         const payload = { id: user.id, name: user.name, email: user.email, zipcode: user.zipcode, createdAt: user.createdAt }
                         // const payload = { id: user.id, name: user.name, email: user.email, zipcode: user.zipcode, createdAt: user.createdAt }
+=======
+                        const payload = { id: user.id, name: user.name, email: user.email, zipcode: user.zipcode, createdAt: user.createdAt, favorite: user.favorite }
+>>>>>>> 22ce01dfb25391fb55370d9019b9868b3ee91ff0
                         //sign the token
                         jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
                             res.json({ success: true, token: 'Bearer ' + token })

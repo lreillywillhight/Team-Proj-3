@@ -5,13 +5,10 @@ const Schema = mongoose.Schema;
 
 //favorites Schema
 const FavoriteSchema = new Schema({
-    event: [{ type: Schema.Types.ObjectId, ref: 'Event' }]
 
-
-
-    // title: {
-    //     type: String,
-    // },
+    eventId: {
+        type: String,
+    },
     // location: {
     //     type: String,
     // },

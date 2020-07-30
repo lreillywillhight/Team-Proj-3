@@ -9,7 +9,6 @@ const Signup = () => {
     let [address, setAddress] = useState('')
     let [state, setState] = useState('')
     let [zipcode, setZipcode] = useState('')
-    // let [password2, setPassword2] = useState('')
     let [redirect, setRedirect] = useState(false)
 
     let handleName = (e) => {
@@ -98,10 +97,6 @@ const Signup = () => {
                             <label htmlFor="password">Password:</label>
                             <input type="password" name="password" value={password} onChange={handlePassword} className="form-control" placeholder='Password' />
                         </div>
-                        {/* <div className="form-group">
-                            <label htmlFor="password2">Confirm Password: Might remove - was j</label>
-                            <input type="password" name="password2" value={password2} onChange={handlePassword2} className="form-control" />
-                        </div> */}
                         <button type="submit" className="btn btn-primary float-right">Submit</button>
                     </form>
                 </div>

@@ -2,6 +2,10 @@ import React from "react"
 
 
 const EventName = (props) => {
+
+
+
+    
     // iterates over array of object (Calendar.js)
     let eventsNameDetail = props.events.map((event, i) => {
         let desc = ""

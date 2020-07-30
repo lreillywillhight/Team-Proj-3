@@ -55,7 +55,6 @@ function App() {
     }
   }
 
-
   return (
     <div className='error'>
       <Navigation component={Navigation} handleLogout={handleLogout} isAuthenticated={isAuthenticated} />
@@ -66,7 +65,7 @@ function App() {
           <PrivateRoute path='/favorites' component={Favorites} user={currentUser} />
           <PrivateRoute path='/profile' component={Profile} user={currentUser} />
           <Route path='/register' component={Register} />
-          <Route path='/eventstemplate' component={EventsTemplate} />
+          <Route path='/eventstemplate' render= { props => <EventsTemplate {...props} nowCurrentUser={nowCurrentUser} user={currentUser} />} />
           <Route path='/' component={Welcome} />
         </Switch>
       </div>

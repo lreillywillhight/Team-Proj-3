@@ -15,20 +15,20 @@ export default function Calendar() {
         "city_name": "San Diego"
     }]
     // backup axios call in case things get hosed
-    const backupCall = axios.get(`https://cors-anywhere.herokuapp.com/http://api.eventful.com/json/events/search?app_key=NFRS6FwLVhcNKTWD&keywords=concerts&location=Seattle&date=Future`)
+    let backupCall = `https://cors-anywhere.herokuapp.com/http://api.eventful.com/json/events/search?app_key=NFRS6FwLVhcNKTWD&keywords=concerts&location=Seattle&date=Future`
 
     //calls API on page render
     useEffect(() => {
         //set events state to wait message while axios call gets data
-        setEvents([{"title": "fetching from eventful, please wait...`"}])
+        setEvents([{"title": "Fetching Events, please wait..."}])
         //variable to be set on page render, write to this variable to adjust search parameters (querys and responses, see eventful documentation)
         let apiUrl = `http://api.eventful.com/json/events/search?app_key=NFRS6FwLVhcNKTWD&keywords=concerts&location=Seattle&date=Future`
         //ideally, we will set apiUrl to a useState(), to allow updating displayed data without reloading page
-        axios.get(apiUrl)
+        axios.get(backupCall)
         //promise function, 'response' is what we're sent with axios.get(apiUrl), after it's arrived to our frontend server, JS will continue processing.
         .then(response => {
             //test to debug .env)
-            console.log(`${process.env.EVENTFUL_KEY}`)
+            // console.log(`${process.env.EVENTFUL_KEY}`)
             //change events state to formatted response
             setEvents(response.data.events.event)
             //data visualization in browser console for debugging
@@ -48,20 +48,21 @@ export default function Calendar() {
     //         </div>
     //     })
     // }
-
+    
     return (
         <div className="Calendar">
-            <div class="row margin">
-                <div class="col-lg-4">
+            <div class="row my-5">
+                <div class="col-4 offset-1">
                     <h3 id="calendar-title">Upcoming Events</h3>
                     <div id="events-display-container">
                         <EventsDisplay events={events} />
                     </div>
                 </div>
-                <div class="col-lg-8 error">
+                <div class="col-6">
                     <FullCalendar
                     plugins={[ dayGridPlugin ]}
                     initialView="dayGridMonth"
+                    
                     />
                 </div>
             </div>

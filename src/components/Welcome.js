@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-export default function Welcome() {
+export default function Welcome(props) {
     return (
     <div className="row">
         <div className="col-lg-8 offset-lg-2">
@@ -10,9 +10,15 @@ export default function Welcome() {
             <p className="lead">Events anywhere and everywhere! Event Tracker allows you to save the ones that pique your interest and find it on a map.</p>
             <hr className="my-2" />
             <p>Never suffer from FOMO again!</p>
-            <NavLink className="btn btn-dark btn-lg" to="/register" role="button">Sign Up!</NavLink>
+            {
+    props.isAuthenticated ?
+    <NavLink className="btn btn-dark btn-lg" to="/register" role="button">Sign Up!</NavLink>
+    :
+    <NavLink className="btn btn-dark btn-lg" to="/profile" role="button">Get Profile</NavLink>
+}
         </div>
         </div>
     </div>
     )
 }
+

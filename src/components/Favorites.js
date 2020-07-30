@@ -41,13 +41,13 @@ export default function Favorites(props) {
     return (
         <div className="Calendar">
             <div class="row margin">
-                <div class="col-lg-4">
+                <div class="col-4 offset-1">
                     <h3 id="calendar-title">Upcoming Events</h3>
                     <div id="events-display-container">
                         {/* <EventsDisplay events={events} /> */}
                     </div>
                 </div>
-                <div class="col-lg-8 error">
+                <div class="col-6">
                     <FullCalendar
                     plugins={[ dayGridPlugin ]}
                     initialView="dayGridMonth"

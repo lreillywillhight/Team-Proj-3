@@ -18,7 +18,7 @@ app.use(cors({
     optionsSuccessStatus: 200
 }))
 //body parser
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 app.use('/v1/users', require('./routes/v1/users'))
@@ -54,7 +54,7 @@ mongoose.connect(mdb)
 
 // test routing
 app.get('/', (req, res) => {
-res.send('Hello World \n Server in up and Running! 🐱‍🐉')
+    res.send('Hello World \n Server in up and Running! 🐱‍🐉')
 })
 
 

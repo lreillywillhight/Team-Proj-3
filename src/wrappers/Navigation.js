@@ -17,7 +17,7 @@ const Navigation = (props) => {
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/calendar">Calendar</NavLink>
                     </li>
-                    <li class="nav-item">
+                    <li className="nav-item">
                         <NavLink className="nav-link" to="/eventstemplate">Events Template</NavLink>
                     </li>
                 </ul>

@@ -100,7 +100,14 @@
 Discussed implimentation with api to calendar
 
 
-- [ ] Meeting 5
+- [X] Meeting 5 7/30 Meeting Milcah and nick
+Refacroting - 
+  the ability to make things more efficient
+Need to store the id from eventful to the Favorites DB
+  using that ID from the F DB
+    we can amke an axios call to retunr the json obj that has the data
+Sum - 
+we just need the eventful id stores 
 
 
 # Wireframes
@@ -123,7 +130,7 @@ https://drive.google.com/file/d/1rdZQrbXQxvStXyV9P8d1gnk8CbRNvxCt/view?usp=shari
  https://docs.google.com/presentation/d/12pGAecJtmeS1GFUZcL304D9aAapzU_ma3j8h-fevh7k/edit#slide=id.gc6f80d1ff_0_0
 
 # Back End README.md from Louis
-[here](./backend/README.md)
+[Louis' HERE](./backend/README.md)
 
 Nesso's meeting with Milcah - 
 - Peer programming - one coder shows screen the other go along and give suggestions(Acts like a real life work enviroment)
@@ -133,3 +140,8 @@ Nesso's meeting with Milcah -
   - attmempt to refactor after 
 
 - Check documentation for best practices 
+
+
+
+Fav schema should reference events scheime
+  event:[( type: schema.typess.objectid, ref: 'Event)]

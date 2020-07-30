@@ -5,19 +5,23 @@ const Schema = mongoose.Schema;
 
 //favorites Schema
 const FavoriteSchema = new Schema({
-    title: {
-        type: String,
-    },
-    location: {
-        type: String,
-    },
-    date: {
-        type: String,
-        required: true,
-    },
-    description: {
-        type: String,
-    },
+    event: [{ type: Schema.Types.ObjectId, ref: 'Event' }]
+
+
+
+    // title: {
+    //     type: String,
+    // },
+    // location: {
+    //     type: String,
+    // },
+    // date: {
+    //     type: String,
+    //     required: true,
+    // },
+    // description: {
+    //     type: String,
+    // },
     // userId: [{
     //     type: mongoose.Types.ObjectId,
     //     ref: 'User'
@@ -27,7 +31,9 @@ const FavoriteSchema = new Schema({
     //     ref: 'User',
     //     comment: String
     // }],
-})
+}, {
+    timestamps: true
+});
 
 
-module.exports = Favorite = mongoose.model('favorites', FavoriteSchema);
+module.exports = Favorite = mongoose.model('Favorite', FavoriteSchema);

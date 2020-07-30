@@ -30,7 +30,7 @@ const Signup = () => {
     }
     let handleZipcode = (e) => {
         setZipcode(e.target.value)
-        console.log('setZipcode', zipcode)
+        // console.log('setZipcode', zipcode)
     }
 
     let handlePassword = (e) => {
@@ -51,13 +51,14 @@ const Signup = () => {
             zipcode: zipcode,
             password: password
         }
-        axios.post(`http://localhost:3001/v1/users/register`, newUser)
+        // axios.post(`http://localhost:3001/v1/users.register`, newUser)
+        axios.post(`${process.env.REACT_APP_API}/v1/users/register`, newUser)
             //THIS LINE NEEDS TO BE REDONE ONCE LOUIS FINISHES BACKEND
             .then(res => {
                 setRedirect(true)
             })
             .catch(err => {
-                console.log(err)
+                console.error(err)
             })
     }
     if (redirect) return <Redirect to='/login' />

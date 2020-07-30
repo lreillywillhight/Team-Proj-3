@@ -12,6 +12,7 @@ import Navigation from './wrappers/Navigation'
 import Register from './components/Register'
 import Footer from './wrappers/Footer'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import 'bootswatch/dist/lux/bootstrap.min.css'
 import './App.css';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {

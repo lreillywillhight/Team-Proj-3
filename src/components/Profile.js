@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Profile = (props) => {
     let userData = props.user
       ? <div class="jumbotron my-3">
-          <h2 class="display-3">Hello, {props.user.name}!</h2>
+          <h2 class="py-auto">Hello, {props.user.name}!</h2>
           <hr class="my-4" />
           <p class="lead"><strong>Email:</strong> {props.user.email}</p>
           <p class="lead"><strong>ZIP Code:</strong> {props.user.zipcode}</p>

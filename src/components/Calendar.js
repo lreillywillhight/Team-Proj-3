@@ -15,7 +15,7 @@ export default function Calendar() {
         "city_name": "San Diego"
     }]
     // backup axios call in case things get hosed
-    let backupCall = `https://cors-anywhere.herokuapp.com/http://api.eventful.com/json/events/search?app_key=NFRS6FwLVhcNKTWD&keywords=concerts&location=Seattle&date=Future`
+    let backupUrl = `https://cors-anywhere.herokuapp.com/http://api.eventful.com/json/events/search?app_key=NFRS6FwLVhcNKTWD&keywords=concerts&location=Seattle&date=Future`
 
     //calls API on page render
     useEffect(() => {
@@ -24,7 +24,9 @@ export default function Calendar() {
         //variable to be set on page render, write to this variable to adjust search parameters (querys and responses, see eventful documentation)
         let apiUrl = `http://api.eventful.com/json/events/search?app_key=NFRS6FwLVhcNKTWD&keywords=concerts&location=Seattle&date=Future`
         //ideally, we will set apiUrl to a useState(), to allow updating displayed data without reloading page
-        axios.get(backupCall)
+        fetch(backupUrl, {
+            method:'get'
+        })
         //promise function, 'response' is what we're sent with axios.get(apiUrl), after it's arrived to our frontend server, JS will continue processing.
         .then(response => {
             //test to debug .env)
@@ -34,7 +36,7 @@ export default function Calendar() {
             //data visualization in browser console for debugging
             console.log(response.data.events.event)
         })
-        .catch(err => console.log('ERROR IN frontend /components/Calendar.js: '+JSON.stringify(err)))
+        .catch(err => console.log('ERROR IN frontend /components/Calendar.js: '+ err))
     }, [])
 
     //array of objects, iterated on in EventsDisplay.js

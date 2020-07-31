@@ -4,9 +4,9 @@ import EventName from './EventComponents/EventName'
 import EventLocation from './EventComponents/EventLocation'
 import axios from 'axios';
 
-export default function EventsTemplate(props) {
+export default function FavoritesTemplate(props) {
 
-    const defaultEventsState = [{"title": "Fetching Events, please wait..."}]
+    const defaultFavoritesState = [{"title": "Querying Database..."}]
 
     // test array of objects to mimic API response
     const testEvents = [{
@@ -23,11 +23,13 @@ export default function EventsTemplate(props) {
     //calls API on page render
     useEffect(() => {
         //set events state to default method while axios call processes
-        setEvents(defaultEventsState)
+        setFavorites(defaultEventsState)
         //call the website. I moved the url to a variable to make it easier to work with
         let apiUrl = `https://api.eventful.com/json/events/search?app_key=NFRS6FwLVhcNKTWD&keywords=concerts&location=Seattle&date=Future`
-        axios.get(apiUrl)
-        //anonymous promise function to be processed when frontend recieves response from api
+        axios.get(`${process.env.REACT_APP_API}/v1/favorites/`, {
+            headers: {"accept":"application/json",
+            'content-type':'application/json'
+        }
         .then(response => {
             singleEvent = []
             let eventfulData = response.data.events.event

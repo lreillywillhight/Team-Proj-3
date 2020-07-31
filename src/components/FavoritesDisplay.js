@@ -1,10 +1,10 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import axios from 'axios'
 
 
-const EventsDisplay = (props) => {
+const FavoritesDisplay = (props) => {
     // iterates over array of object (Calendar.js)
-    let eventsList = props.events.map((event, i) => {
+    let favoritesList = props.favorites.map((event, i) => {
         let desc = ""
         if (event.description) {
             desc = event.description.replace(/(<([^>]+)>)/ig, '');
@@ -20,20 +20,19 @@ const EventsDisplay = (props) => {
             }   
 
         let handleClick = (e) => {
-            
-            console.log(`ping! ` + Object.keys(e))
-            console.log(`e.target: ` + Object.keys(e.currentTarget))
-            console.log(`event id is: ${event.id}`)
-            axios.post(`${process.env.REACT_APP_API}/v1/favorites/testpost`, {id:`${event.id}`, location:`${event.venue}`, date:`${event.start_time}`,description:`${event.description}`}, {
-                headers:headerOptions
-            })
-            // .then(res => res.json())
+            // e.preventDefault()
+            axios.delete(`${process.env.REACT_APP_API}/v1/favorites/deleteFavorite/${event._id}`)
             .then(response => {
-                console.log(`bingo bongo! `+ JSON.stringify(response.data))
-                        })
-            .catch(err => {
-                console.error(err)
+                props.handleDelete()
+                console.log(event._id)
+                if (response.status === 200) {
+                    console.log(response.data.message)
+                } else {
+                    console.log(response.statusText)
+                }
             })
+            .catch(err => console.log(err.message))
+            
         }
         // let handleClick = (e) => {
             
@@ -57,25 +56,23 @@ const EventsDisplay = (props) => {
         // }
         
         return (
-            //console.log('eventsList return: ' + i + event.id)
             <div class="card border mb-3" styles="max-width: 20rem;">
                 <div class="card-header">{event.start_time}</div>
                 <div class="card-body">
                     <h4 class="card-title">{event.title}</h4>
                     <p class="card-text">{event.venue_address}</p>
                     <p class="card-text">{desc}</p>
-                    <button onClick={handleClick} className={`addButton`} id={`${event.id}`}>Add Event to Favorites</button>
+                    <button onClick={handleClick} className={`deleteButton`} id={`${event._id}`}>Remove Event from Favorites</button>
                 </div>
             </div>
         )
     })
 
     return (
-        <div className="eventDisplay">
-            {eventsList}
-            {/* {eventsList} */}
+        <div className="favoritesDisplay">
+            {favoritesList}
         </div>
     );
 }
 
-export default EventsDisplay
+export default FavoritesDisplay

@@ -9,16 +9,16 @@ const FavoriteSchema = new Schema({
     eventId: {
         type: String,
     },
-    // location: {
-    //     type: String,
-    // },
-    // date: {
-    //     type: String,
-    //     required: true,
-    // },
-    // description: {
-    //     type: String,
-    // },
+    location: {
+        type: String,
+    },
+    date: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String,
+    },
     // userId: [{
     //     type: mongoose.Types.ObjectId,
     //     ref: 'User'

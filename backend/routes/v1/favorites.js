@@ -1,7 +1,12 @@
 const express = require('express')
 const router = express.Router()
+var cors = require('cors')
+var app = express()
 
 const db = require('../../models')
+
+app.use(cors())
+
 
 ////////////// ROUTES
 
@@ -37,17 +42,12 @@ const db = require('../../models')
 // })
 
 
-// // CREATE favorite within database
-// //currently this checks for duplicates with title, we should change this to a unique identifier (eventId)
-// router.post('/addFavorite', (req, res) => {
-//     db.User.findOne({
-//         // find only for the current user favorite collection here
+// CREATE favorite within database
+//currently this checks for duplicates with title, we should change this to a unique identifier (eventId)
+// router.post('/testpost', (req, res) => {
+//     console.log(req.body)} //remove this line to fix.
+//     db.Favorite.findOne({}).findOne({
 //         email: req.body.email
-//         // looking at event and finding the field named title to match to our req title
-//         // event: 
-//         // { $elemMatch: 
-//         //     {title: req.body.title} 
-//         // } 
 //     })
 //         .then(user => {
 //             console.log(user)
@@ -111,13 +111,58 @@ const db = require('../../models')
 // module.exports = router
 
 /*------------ REWRITE -----------*/
+app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next()
+  });
 
 // GET - return a page with all favorites
-router.get('/', function (req, res) {
+router.get('/', function (req, res, next) {
     db.Favorite.find()
-        .then(favorite => {
-            res.send(favorite)
+        .then(favorites => {
+            console.log(favorites)
+            res.send(favorites)
         })
+})
+
+router.get('/idOnly', (req, res, next) => {
+    let filter = "title"
+    db.Favorite.find({},{filter})
+    .then(favorites => {
+        console.log(favorites)
+        res.send(favorites)
+    })
+})
+
+router.post('/testpost', function (req,res, next) {
+        console.log(req.body)
+        db.Favorite.findOne({eventId:req.body.id})
+        .then(favorite => {
+            if (favorite) {
+                return res.send('error, event already favorited')
+            } else {
+                let reqBody = req.body
+                const newFave = new Favorite(
+                    reqBody
+                )
+                newFave.save()
+                .then(fave => res.json(fave))
+            }
+        })
+        .catch (err => console.log(err))
+})
+
+router.delete('/deleteFavorite/:id', (req,res,next) => {
+    // console.log(JSON.stringify(req.body))
+    db.Favorite.findOneAndDelete(
+        { _id: req.params.id }
+        )
+        .then(deleteFavorite => {
+        console.log(deleteFavorite)
+        res.send({Message: 'Favorite Deleted'})
+    })
+    .catch(err => { console.error(err) })
 })
 
 // POST - receive the name of a pokemon and add it to the database

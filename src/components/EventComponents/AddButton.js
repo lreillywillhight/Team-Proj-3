@@ -3,20 +3,24 @@ import axios from 'axios';
 
 export default function AddButton(props) {
     const handleAdd = e => {
-        e.preventDefault()
-
-        axios.delete(`${process.env.REACT_APP_API}/favorites/${props.id}`)
-            .then(response => {
-                if (response.status === 200) {
-                    props.refresh(true)
-                } else {
-                    props.setError(response.statusText)
-                }
-            }).catch(err => {
-                props.setError(err.message)
-
-            })
+        console.log('hello from addbutton')
     }
+    // const handleAdd = e => {
+    //     e.preventDefault()
+
+    //     axios.get(`${process.env.REACT_APP_API}/favorites/`)
+    //         .then(response => {
+    //             console.log(response)
+    //             if (response.status === 200) {
+    //                 props.refresh(true)
+    //             } else {
+    //                 props.setError(response.statusText)
+    //             }
+    //         }).catch(err => {
+    //             props.setError(err.message)
+
+    //         })
+    // }
 
     return (
         <form className="delete-bounty-button" onSubmit={handleAdd}>

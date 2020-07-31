@@ -60,13 +60,20 @@ function App() {
       <Navigation component={Navigation} handleLogout={handleLogout} isAuthenticated={isAuthenticated} />
       <div className="react-router-logic">
         <Switch>
-          <Route path='/calendar' component={Calendar} user={currentUser}/>
+          <Route path='/calendar' render={props => <Calendar {...props} user={currentUser} /> } />
+  
           <Route path='/login' render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} user={currentUser} /> } />
+
           <PrivateRoute path='/favorites' component={Favorites} user={currentUser} />
+
           <PrivateRoute path='/profile' component={Profile} user={currentUser} />
+
           <Route path='/register' component={Register} />
+
           <Route path='/eventstemplate' render= { props => <EventsTemplate {...props} nowCurrentUser={nowCurrentUser} user={currentUser} />} />
+
           <Route path='/' component={Welcome} />
+
         </Switch>
       </div>
       <div>

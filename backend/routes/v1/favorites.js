@@ -136,8 +136,8 @@ router.get('/idOnly', (req, res, next) => {
 })
 
 router.post('/testpost', function (req,res, next) {
-        console.log(req.body)
-        db.Favorite.findOne({eventId:req.body.id})
+        console.log(JSON.stringify(req.body) + 'PINGGGGGGGGG')
+        db.Favorite.findOne({eventId:req.body.eventId})
         .then(favorite => {
             if (favorite) {
                 return res.send('error, event already favorited')

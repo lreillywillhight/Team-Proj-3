@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 const EventsDisplay = (props) => {
-    // iterates over array of object (Calendar.js)
+    // iterates over array of object, cleans up some regex to look nice
     let eventsList = props.events.map((event, i) => {
         let desc = ""
         if (event.description) {
@@ -12,22 +12,19 @@ const EventsDisplay = (props) => {
             desc = desc.replace(/&quot;/g, '')
         }
 
+        //headers to pass proper format to db
         let headerOptions = {
                 'accept': 'application/json',
-                'accept': 'text/json',
+                // 'accept': 'text/json',
                 'accept': 'text/javascript',
                 'Content-Type': 'application/json'
             }   
-
+        
+        //add a favorite event to the database
         let handleClick = (e) => {
-            
-            console.log(`ping! ` + Object.keys(e))
-            console.log(`e.target: ` + Object.keys(e.currentTarget))
-            console.log(`event id is: ${event.id}`)
-            axios.post(`${process.env.REACT_APP_API}/v1/favorites/testpost`, {id:`${event.id}`, location:`${event.venue}`, date:`${event.start_time}`,description:`${event.description}`}, {
+            axios.post(`${process.env.REACT_APP_API}/v1/favorites/testpost`, {eventId:`${event.id}`,date:`${event.start_time}`}, {
                 headers:headerOptions
             })
-            // .then(res => res.json())
             .then(response => {
                 console.log(`bingo bongo! `+ JSON.stringify(response.data))
                         })
@@ -35,29 +32,9 @@ const EventsDisplay = (props) => {
                 console.error(err)
             })
         }
-        // let handleClick = (e) => {
-            
-        //     console.log(`ping! ` + Object.keys(e))
-        //     console.log(`e.target: ` + Object.keys(e.currentTarget))
-        //     console.log(`event id is: ${event.id}`)
-        //     fetch(`${process.env.REACT_APP_API}/v1/favorites/testpost`, {
-        //         method:"POST",
-        //         body: JSON.stringify({
-        //             "id":"chocolates"
-        //         }),
-        //         headers:headerOptions
-        //     })
-        //     // .then(res => res.json())
-        //     .then(response => {
-        //         console.log(`bingo bongo! `+ JSON.stringify(response))
-        //                 })
-        //     .catch(err => {
-        //         console.error(err)
-        //     })
-        // }
+        
         
         return (
-            //console.log('eventsList return: ' + i + event.id)
             <div class="card border mb-3" styles="max-width: 20rem;">
                 <div class="card-header">{event.start_time}</div>
                 <div class="card-body">
@@ -73,7 +50,6 @@ const EventsDisplay = (props) => {
     return (
         <div className="eventDisplay">
             {eventsList}
-            {/* {eventsList} */}
         </div>
     );
 }

@@ -9,6 +9,7 @@ const axios = require('axios')
 const passport = require('passport')
 
 //load User model from file location
+const db = require('../../models')
 const User = require('../../models/user')
 const { response } = require('express')
 const e = require('express')
@@ -34,6 +35,18 @@ router.get('/view/:id', (req,res) => {
 //Get api user registered
 router.get('/test', (req, res) => {
     res.json({ msg: "Users endpoint working eyyyy okayyy" })
+})
+
+router.put('/updateByZipcode/:id/:zipcode', (req,res) => {
+    
+    db.User.findOneAndUpdate(
+        { _id: req.params.id },
+        {$set:{zipcode:req.params.zipcode}}
+    )
+    .then(updatedUser => {
+        res.send(updatedUser)
+    })
+    .catch(err => console.error(err))
 })
 
 //test route to hit external eventful

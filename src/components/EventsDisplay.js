@@ -22,7 +22,7 @@ const EventsDisplay = (props) => {
         
         //add a favorite event to the database
         let handleClick = (e) => {
-            axios.post(`${process.env.REACT_APP_API}/v1/favorites/testpost`, {eventId:`${event.id}`,date:`${event.start_time}`}, {
+            axios.post(`${process.env.REACT_APP_API}/v1/favorites/testpost`, {eventId:`${event.id}`,date:`${event.start_time}`, location:`${event.venue_address}`, description: `${event.description}`}, {
                 headers:headerOptions
             })
             .then(response => {
@@ -39,7 +39,9 @@ const EventsDisplay = (props) => {
                 <div class="card-header">{event.start_time}</div>
                 <div class="card-body">
                     <h4 class="card-title">{event.title}</h4>
-                    <p class="card-text">{event.venue_address}</p>
+                    <p class="card-text">{event.venue_address} <br/>
+                    {event.city_name} , {event.region_abbr}
+                    </p>
                     <p class="card-text">{desc}</p>
                     <button onClick={handleClick} className={`addButton`} id={`${event.id}`}>Add Event to Favorites</button>
                 </div>

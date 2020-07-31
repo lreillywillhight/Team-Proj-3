@@ -29,7 +29,7 @@ export default function Login(props) {
         // make a post request to our API to see check user Authentication
 
         // axios.post(`http://localhost:3001/v1/users/login`, userData)
-        axios.post(`${process.env.REACT_APP_API}/v1/users/login/`, userData)
+        axios.post(`${process.env.REACT_APP_API}v1/users/login/`, userData)
             .then(res => {
                 console.log('LOGIN.JS RES.DATA IS: ' + res.data)
 

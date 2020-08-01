@@ -71,6 +71,7 @@ const FavoritesDisplay = (props) => {
             </div>
         )
     })
+    console.log(favoritesList)
 
     return (
         <div className="favoritesDisplay">

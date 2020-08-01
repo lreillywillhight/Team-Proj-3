@@ -26,7 +26,7 @@ export default function FavoritesTemplate(props) {
         setFavorites(defaultEventsState)
         //call the website. I moved the url to a variable to make it easier to work with
         let apiUrl = `https://api.eventful.com/json/events/search?app_key=NFRS6FwLVhcNKTWD&keywords=concerts&location=Seattle&date=Future`
-        axios.get(`${process.env.REACT_APP_API}/v1/favorites/`, {
+        axios.get(`${process.env.REACT_APP_SERVER_URL}v1/favorites/`, {
             headers: {"accept":"application/json",
             'content-type':'application/json'
         }

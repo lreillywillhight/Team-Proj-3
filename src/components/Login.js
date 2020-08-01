@@ -26,6 +26,7 @@ export default function Login(props) {
             email: email,
             password: password,
         }
+        console.log(`${process.env.REACT_APP_API}`)
         // make a post request to our API to see check user Authentication
 
         // axios.post(`http://localhost:3001/v1/users/login`, userData)

@@ -51,7 +51,7 @@ const Signup = () => {
             password: password
         }
         // axios.post(`http://localhost:3001/v1/users.register`, newUser)
-        axios.post(`https://agitated-montalcini-8a233c.netlify.app/v1/users/register`, newUser)
+        axios.post(`https://ga-project-tracker-app526.herokuapp.com/v1/users/register`, newUser)
             //THIS LINE NEEDS TO BE REDONE ONCE LOUIS FINISHES BACKEND
             .then(res => {
                 setRedirect(true)

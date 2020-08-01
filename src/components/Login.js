@@ -5,6 +5,8 @@ import { Redirect } from 'react-router-dom'
 import setAuthToken from '../utils/setAuthToken'
 
 export default function Login(props) {
+
+    console.log(Object.keys(process.env))
     console.log("Login Component Rendered")
     console.log(props, 'HI')
 
@@ -26,11 +28,11 @@ export default function Login(props) {
             email: email,
             password: password,
         }
-        console.log(`${process.env.REACT_APP_API}`)
+        console.log(`${process.env.REACT_APP_SERVER_URL}`)
         // make a post request to our API to see check user Authentication
 
         // axios.post(`http://localhost:3001/v1/users/login`, userData)
-        axios.post(`${process.env.REACT_APP_API}v1/users/login/`, userData)
+        axios.post(`${process.env.REACT_APP_SERVER_URL}v1/users/login/`, userData)
             .then(res => {
                 console.log('LOGIN.JS RES.DATA IS: ' + res.data)
 

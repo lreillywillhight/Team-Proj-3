@@ -5,6 +5,10 @@ import axios from 'axios'
 const FavoritesDisplay = (props) => {
     // iterates over array of object (Calendar.js)
     let favoritesList = props.favorites.map((event, i) => {
+
+        console.log(Object.keys(process.env))
+        console.log(process.env.REACT_APP_SERVER_URL)
+
         let desc = ""
         if (event.description) {
             desc = event.description.replace(/(<([^>]+)>)/ig, '');
@@ -21,7 +25,7 @@ const FavoritesDisplay = (props) => {
 
         let handleClick = (e) => {
             // e.preventDefault()
-            axios.delete(`${process.env.REACT_APP_API}/v1/favorites/deleteFavorite/${event._id}`)
+            axios.delete(`${process.env.REACT_APP_SERVER_URL}v1/favorites/deleteFavorite/${event._id}`)
             .then(response => {
                 props.handleDelete()
                 console.log(event._id)
@@ -39,7 +43,7 @@ const FavoritesDisplay = (props) => {
         //     console.log(`ping! ` + Object.keys(e))
         //     console.log(`e.target: ` + Object.keys(e.currentTarget))
         //     console.log(`event id is: ${event.id}`)
-        //     fetch(`${process.env.REACT_APP_API}/v1/favorites/testpost`, {
+        //     fetch(`${process.env.REACT_APP_SERVER_URL}v1/favorites/testpost`, {
         //         method:"POST",
         //         body: JSON.stringify({
         //             "id":"chocolates"

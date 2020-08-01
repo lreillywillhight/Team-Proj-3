@@ -6,6 +6,7 @@ import setAuthToken from '../utils/setAuthToken'
 
 export default function Login(props) {
 
+    console.log(process.env.REACT_APP_SERVER_URL)
     console.log(Object.keys(process.env))
     console.log("Login Component Rendered")
     console.log(props, 'HI')

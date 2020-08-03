@@ -7,11 +7,13 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 
 export default function Favorites(props) {
 
+    console.log('Favorites.js: ' +Object.keys(process.env))
+
     const [favorites,setFavorites] = useState([{1:""},{2:""}])
 
     //calls database on page render
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API}/v1/favorites/`, {
+        axios.get(`${process.env.REACT_APP_SERVER_URL}v1/favorites/`, {
             headers: {"accept":"application/json",
             'content-type':'application/json'
             }
@@ -25,7 +27,7 @@ export default function Favorites(props) {
 
     //updates state when delete button is pressed EventsTemplate.js
     const handleDelete = () => {
-        axios.get(`${process.env.REACT_APP_API}/v1/favorites/`, {
+        axios.get(`${process.env.REACT_APP_SERVER_URL}v1/favorites/`, {
         headers: {"accept":"application/json",
         'content-type':'application/json'
         }

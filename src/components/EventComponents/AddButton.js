@@ -8,7 +8,7 @@ export default function AddButton(props) {
     // const handleAdd = e => {
     //     e.preventDefault()
 
-    //     axios.get(`${process.env.REACT_APP_API}favorites/`)
+    //     axios.get(`${process.env.REACT_APP_SERVER_URL}favorites/`)
     //         .then(response => {
     //             console.log(response)
     //             if (response.status === 200) {

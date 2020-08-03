@@ -36,6 +36,7 @@ export default function FavoritesTemplate(props) {
             eventfulData.forEach(function(eventInfo) {
                 var i = 0
                 if (i == singleEvent.length) {
+                    console.log(eventInfo)
                     singleEvent.push(`${eventInfo.title}`)
                 } 
             })

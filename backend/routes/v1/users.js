@@ -16,6 +16,13 @@ const e = require('express')
 
 // API Routes
 
+//some headers for debugging
+app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next()
+  });
+
 //dev route for testing, please do not delete
 router.get('/', (req,res) => {
     User.find()
@@ -102,6 +109,7 @@ router.post('/register', (req, res) => {
                 })
             }
         })
+        .catch(err => res.json(err))
 })
 //delete .json(user) for long term security
 
@@ -135,8 +143,7 @@ router.post('/login', (req, res) => {
                     }
                 })
         })
-
-
+        .catch(err => res.json(err))
 })
 
 // GET if already logged in, set user data to current

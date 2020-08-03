@@ -38,7 +38,7 @@ const Signup = () => {
 
     let handleSubmit = (e) => {
         e.preventDefault()
-        console.log(process.env.REACT_APP_API)
+        console.log(process.env.REACT_APP_URL)
         //check if both passwords are the same
         //    this code wasnt done so i left it out
         const newUser = {

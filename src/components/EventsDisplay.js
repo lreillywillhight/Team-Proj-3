@@ -23,9 +23,12 @@ const EventsDisplay = (props) => {
         //add a favorite event to the database
         let handleClick = (e) => {
             console.log(`${process.env.REACT_APP_SERVER_URL}`)
-            axios.post(`${process.env.REACT_APP_SERVER_URL}v1/favorites/testpost`, {eventId:`${event.id}`,date:`${event.start_time}`, location:`${event.venue_address}`, description: `${event.description}`}, {
-                headers:headerOptions
-            })
+            console.log(event)
+            axios.post(`${process.env.REACT_APP_SERVER_URL}v1/favorites/testpost`, {eventId:`${event.id}`,date:`${event.start_time}`, location:`${event.venue_address}`, description: `${event.description}`}
+            // , {
+            //     headers:headerOptions
+            // }
+            )
             .then(response => {
                 console.log(`bingo bongo! `+ JSON.stringify(response.data))
                         })

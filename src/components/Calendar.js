@@ -8,10 +8,8 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 
 export default function Calendar(props) {
     let user = props.user
-    //if no user logged in, default to seattle
-    if (!user) {zipcode = 98101}
-    //set zipcode to user.zipcode for backupCall
     let zipcode = user.zipcode
+    if (!zipcode) {zipcode = 98101}
     // test array of objects to mimic API response
     const testEvents = [{
         "url": "http://sandiego.eventful.com/events/lgbt-book-club-/E0-001-134699507-9?utm_source=apis&utm_medium=apim&utm_campaign=apic",

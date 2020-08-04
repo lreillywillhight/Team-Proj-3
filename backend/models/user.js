@@ -23,8 +23,7 @@ const UserSchema = new Schema({
     required: true,
   },
   favorite: [{ 
-    type: Schema.Types.ObjectId, 
-    ref: "Favorite" 
+    type: String, 
   }]
   // DOB: {
   //   type: Number,

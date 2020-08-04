@@ -11,11 +11,11 @@ export default function Welcome(props) {
             <hr className="my-2" />
             <p>Never suffer from FOMO again!</p>
             {
-    props.isAuthenticated ?
-    <NavLink className="btn btn-dark btn-lg" to="/register" role="button">Sign Up!</NavLink>
-    :
-    <NavLink className="btn btn-dark btn-lg" to="/profile" role="button">Get Profile</NavLink>
-}
+            props.isAuthenticated ?
+                <NavLink className="btn btn-dark btn-lg" to="/profile" role="button">Get Profile</NavLink>
+                :
+                <NavLink className="btn btn-dark btn-lg" to="/register" role="button">Sign Up!</NavLink>
+            }
         </div>
         </div>
     </div>

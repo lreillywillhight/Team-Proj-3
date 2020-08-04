@@ -5,19 +5,8 @@ const db = require('./models')
 const cors = require('cors')
 const passport = require('passport')
 const bodyParser = require('body-parser')
-
 //config DB
-//const mdb = process.env.MONGO_URI
-const uri = process.env.MONGOD_URI
-
-const MongoClient = require('mongodb').MongoClient;
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
-
+// const mdb = process.env.MONGO_URI
 
 const users = require('./routes/v1/users')
 const mongoose = require('mongoose')
@@ -48,7 +37,7 @@ app.use(function(req, res, next) {
 // }
 app.use(cors())
 //body parser
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 // app.use(bodyParser.urlencoded({extended: true}))
 
@@ -63,10 +52,10 @@ app.use('/v1/users', users)
 require('./config/passport')(passport)
 
 
-const uri = process.env.MONGOD_URI
+const mongouri = process.env.MONGOD_URI
 console.log(process.env.MONGOD_URI)
 const MongoClient = require('mongodb').MongoClient;
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = new MongoClient(mongouri, { useNewUrlParser: true });
 client.connect(err => {
   const collection = client.db("test").collection("devices");
   // perform actions on the collection object
@@ -74,24 +63,10 @@ client.connect(err => {
 });
 
 
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-//   });
-
-
-// routes
-<<<<<<< HEAD
 
 // connect mongoose THIS WILL CONNECT TO uri IN DEPLOYMENT
-mongoose.connect(uri)
+mongoose.connect(mongouri)
     .then(() => { console.log('MongoDB Connected... (^///^)') })
-=======
-//mongoose.connect(mdb)
-mongoose.connect(uri)
-    .then(() => { console.log('MongoDB Connected! Congrats!') })
->>>>>>> 5ce4184552cd3dc25d06e01cab037a8c36cd4408
     .catch(err => console.log(err))
 
     // test routing

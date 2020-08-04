@@ -18,11 +18,7 @@
     "express": "^4.17.1",
     "gravatar": "^1.8.1",
     "jsonwebtoken": "^8.5.1",
-<<<<<<< HEAD
     "mongodb": "^3.6.0",
-=======
-    "mongodb": "^3.5.9",
->>>>>>> 5ce4184552cd3dc25d06e01cab037a8c36cd4408
     "mongoose": "^5.9.25",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",

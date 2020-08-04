@@ -51,11 +51,7 @@ const Signup = () => {
             password: password
         }
         // axios.post(`http://localhost:3001/v1/users.register`, newUser)
-<<<<<<< HEAD
         axios.post(`${process.env.REACT_APP_SERVER_URL}v1/users/register`, newUser)
-=======
-        axios.post(`${process.env.REACT_APP_API}v1/users/register`, newUser)
->>>>>>> 5ce4184552cd3dc25d06e01cab037a8c36cd4408
             //THIS LINE NEEDS TO BE REDONE ONCE LOUIS FINISHES BACKEND
             .then(res => {
                 setRedirect(true)

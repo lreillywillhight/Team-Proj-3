@@ -13,7 +13,7 @@ const Profile = (props) => {
     let handleSubmit = (e) => {
       console.log(props.user)
         e.preventDefault()
-        axios.put(`/v1/users/updateByZipcode/${props.user._id}/${props.user.zipcode}`)
+        axios.put(`/v1/users/updateByZipcode/${props.user.email}/${props.user.zipcode}`)
         .then(response =>
             console.log(response))
             .catch(err => console.error(err))

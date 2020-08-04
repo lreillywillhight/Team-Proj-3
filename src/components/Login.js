@@ -33,15 +33,11 @@ export default function Login(props) {
         // make a post request to our API to see check user Authentication
 
         // axios.post(`http://localhost:3001/v1/users/login`, userData)
-<<<<<<< HEAD
         axios.post(`${process.env.REACT_APP_SERVER_URL}v1/users/login/`, userData, {
             headers: {"accept":"application/json",
             'content-type':'application/json'
             }
         })
-=======
-        axios.post(`${process.env.REACT_APP_API}v1/users/login/`, userData)
->>>>>>> 5ce4184552cd3dc25d06e01cab037a8c36cd4408
             .then(res => {
                 console.log('LOGIN.JS RES.DATA IS: ' + res.data)
 

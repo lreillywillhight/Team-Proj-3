@@ -146,6 +146,28 @@ router.post('/login', (req, res) => {
         .catch(err => res.json(err))
 })
 
+
+//add fav
+router.post('/add', (req, res) => {
+    User.findOneAndUpdate(
+        { email: req.body.email },
+        { $push: {favorite: req.body.value} }
+    ).then(updatedFavorite => {
+        res.send(updatedFavorite)
+    }).catch(err => console.error(err))
+})
+
+//remove fav
+router.post('/remove', function(req, res) {
+    User.findOneAndUpdate(
+        {email: req.body.email },
+        {$pull: {favorite: req.body.value}}
+    ).then(removedFav => {
+        res.send(removedFav)
+    })
+})
+
+
 // GET if already logged in, set user data to current
 
 module.exports = router

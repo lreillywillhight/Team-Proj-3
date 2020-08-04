@@ -8,31 +8,54 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 
 export default function Calendar(props) {
     let user = props.user
+<<<<<<< HEAD
     let zipcode = user.zipcode
     if (!zipcode) {zipcode = 98101}
+=======
+
+>>>>>>> 5ce4184552cd3dc25d06e01cab037a8c36cd4408
     // test array of objects to mimic API response
     const testEvents = [{
         "url": "http://sandiego.eventful.com/events/lgbt-book-club-/E0-001-134699507-9?utm_source=apis&utm_medium=apim&utm_campaign=apic",
         "id": "E0-001-134699507-9",
         "city_name": "San Diego"
     }]
+    
+    console.log(user.zipcode)
+
     // backup axios call in case things get hosed
+<<<<<<< HEAD
     // if user is logged in, uses props.user.zipcode
     // else uses default zipcode
     let backupCall = `https://cors-anywhere.herokuapp.com/http://api.eventful.com/json/events/search?app_key=${process.env.REACT_APP_EVENTFUL_KEY}&keywords=concerts&location=${zipcode}&date=Future`
+=======
+    let backupCall = user ? 
+    `https://cors-anywhere.herokuapp.com/http://api.eventful.com/json/events/search?app_key=NFRS6FwLVhcNKTWD&location=${user.zipcode}&date=Future`
+    :
+    `https://cors-anywhere.herokuapp.com/http://api.eventful.com/json/events/search?app_key=NFRS6FwLVhcNKTWD&location=Seattle&date=Future`
+>>>>>>> 5ce4184552cd3dc25d06e01cab037a8c36cd4408
 
+    console.log(user.zipcode)
     //calls API on page render
     useEffect(() => {
+<<<<<<< HEAD
         console.log(user.zipcode)
         //set events state to wait message while axios call gets data
         setEvents([{"title": "Fetching Events, please wait..."}])
         //variable to be set on page render, write to this variable to adjust search parameters (querys and responses, see eventful documentation)
         let apiUrl = `http://api.eventful.com/json/events/search?app_key=${process.env.REACT_APP_EVENTFUL_KEY}&keywords=concerts&location=98101&date=Future`
         //ideally, we will set apiUrl to a useState(), to allow updating displayed data without reloading page
+=======
+        
+        setEvents([{"title": "Fetching Events, please wait..."}])
+        let apiUrl = `http://api.eventful.com/json/events/search?app_key=NFRS6FwLVhcNKTWD&keywords=concerts&location=Seattle&date=Future`
+>>>>>>> 5ce4184552cd3dc25d06e01cab037a8c36cd4408
         axios.get(backupCall)
-        //promise function, 'response' is what we're sent with axios.get(apiUrl), after it's arrived to our frontend server, JS will continue processing.
         .then(response => {
+<<<<<<< HEAD
             console.log(response.data.events.event)
+=======
+>>>>>>> 5ce4184552cd3dc25d06e01cab037a8c36cd4408
             setEvents(response.data.events.event)
         })
         .catch(err => console.log('ERROR IN frontend /components/Calendar.js: '+ err))
